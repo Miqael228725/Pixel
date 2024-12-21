@@ -7,6 +7,7 @@ let fill = document.querySelector('.fill')
 let eraser = document.querySelector('.eraser')
 let def_color = getComputedStyle(document.documentElement).getPropertyValue('--default');
 let cur_color = getComputedStyle(document.documentElement).getPropertyValue('--cur-color');
+let mult_color = document.querySelector('.multy_color')
 btn_start.addEventListener('click', function(){
     main.style.opacity = '1'
     anime({
@@ -104,3 +105,9 @@ fill.addEventListener('click', function(){
     }
     }
 )
+
+
+mult_color.addEventListener('input', ()=>{
+    cur_color = mult_color.value
+    
+})
