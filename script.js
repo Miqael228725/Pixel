@@ -4,6 +4,7 @@ let field = document.querySelector('.field')
 let main = document.querySelector('.main')
 let tools_color = document.querySelectorAll('.color')
 let fill = document.querySelector('.fill')
+let save = document.querySelector('.save')
 let eraser = document.querySelector('.eraser')
 let def_color = getComputedStyle(document.documentElement).getPropertyValue('--default');
 let cur_color = getComputedStyle(document.documentElement).getPropertyValue('--cur-color');
@@ -110,4 +111,22 @@ fill.addEventListener('click', function(){
 mult_color.addEventListener('input', ()=>{
     cur_color = mult_color.value
     
+})
+
+save.addEventListener('click', ()=>{
+    let p = []
+    cell_list.forEach(i=>{
+        p.push(i.style.backgroundColor || def_color)
+    })
+    localStorage.setItem('p', JSON.stringify(p))
+    
+})
+window.addEventListener('load', ()=>{
+    let img = localStorage.getItem('p')
+    if (img){
+        let img_array = JSON.parse(img)
+        cell_list.forEach((cell, index)=>{
+            cell.style.backgroundColor = img_array[index]
+        })
+    }
 })
